@@ -629,24 +629,22 @@ const obs=new IntersectionObserver(es=>{
 document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
 
 /* Calendly popup — load script on demand, open when ready */
-var calendlyLoaded = false;
+var calendlyLoading = false;
 function openModal(){
   var CALY_URL = 'https://calendly.com/clickwithus26/30min?hide_gdpr_banner=1&primary_color=b05a3a';
-  if(window.Calendly && calendlyLoaded){
+  if(window.Calendly){
     Calendly.initPopupWidget({url: CALY_URL});
     return;
   }
-  // Load script once
-  if(!document.getElementById('calendly-script')){
-    var s = document.createElement('script');
-    s.id = 'calendly-script';
-    s.src = 'https://assets.calendly.com/assets/external/widget.js';
-    s.onload = function(){
-      calendlyLoaded = true;
-      Calendly.initPopupWidget({url: CALY_URL});
-    };
-    document.head.appendChild(s);
-  }
+  if(calendlyLoading) return;
+  calendlyLoading = true;
+  var s = document.createElement('script');
+  s.src = 'https://assets.calendly.com/assets/external/widget.js';
+  s.onload = function(){
+    calendlyLoading = false;
+    Calendly.initPopupWidget({url: CALY_URL});
+  };
+  document.head.appendChild(s);
 }
 </script>
 </body>
