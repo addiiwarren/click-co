@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Click.co — Social Media Marketing Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<!-- Calendly widget CSS -->
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --terra:#b05a3a;--terra-dark:#8a3e22;--terra-light:#d4845a;
+  --sand:#f5ede2;--sand-mid:#ede0cc;--sand-dark:#c8b89a;
+  --cream:#faf6f0;--ink:#1e1610;--ink-soft:#4a3728;--muted:#8a7060;
+  --sage:#6b7c5c;--warm-white:#fefcf8;
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-body:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--ink);font-family:var(--font-body);overflow-x:hidden;cursor:none;}
+
+.cur{position:fixed;width:10px;height:10px;background:var(--terra);border-radius:50%;pointer-events:none;z-index:9999;transition:transform 0.15s;}
+.cur-ring{position:fixed;width:34px;height:34px;border:1.5px solid var(--terra-light);border-radius:50%;pointer-events:none;z-index:9998;opacity:0.5;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 4rem;transition:all 0.4s;}
+nav.scrolled{background:rgba(250,246,240,0.96);backdrop-filter:blur(16px);padding:1rem 4rem;box-shadow:0 1px 0 var(--sand-dark);}
+.nav-logo{font-family:var(--font-display);font-size:1.65rem;font-weight:700;color:var(--ink);text-decoration:none;letter-spacing:-0.02em;}
+.nav-logo span{color:var(--terra);}
+.nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none;}
+.nav-links a{font-size:0.82rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--terra);}
+.btn-book{background:var(--terra);color:var(--warm-white)!important;padding:0.6rem 1.5rem;border-radius:100px;font-weight:600!important;letter-spacing:0.06em!important;transition:background 0.2s,transform 0.15s!important;cursor:none;}
+.btn-book:hover{background:var(--terra-dark)!important;transform:translateY(-1px);}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--sand);position:relative;overflow:hidden;display:flex;align-items:center;}
+.hero-glow{position:absolute;top:-10%;right:-5%;width:600px;height:600px;background:radial-gradient(circle,rgba(176,90,58,0.15),transparent 70%);border-radius:50%;pointer-events:none;}
+.hero-desert-bg{position:absolute;bottom:0;left:0;right:0;height:55%;pointer-events:none;}
+.hero-inner{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:10rem 4rem 6rem;display:grid;grid-template-columns:1.1fr 0.9fr;gap:5rem;align-items:center;width:100%;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:0.6rem;font-size:0.72rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--terra);margin-bottom:1.5rem;background:rgba(176,90,58,0.1);padding:0.4rem 1rem;border-radius:100px;border:1px solid rgba(176,90,58,0.2);}
+.hero-h1{font-family:var(--font-display);font-weight:900;font-size:clamp(3.2rem,5.5vw,5.5rem);line-height:1;letter-spacing:-0.02em;color:var(--ink);margin-bottom:1.5rem;}
+.hero-h1 .italic-terra{font-style:italic;color:var(--terra);}
+.hero-sub{font-size:1.05rem;line-height:1.75;color:var(--muted);max-width:420px;margin-bottom:2.5rem;}
+.hero-btns{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;}
+.btn-primary{background:var(--terra);color:var(--warm-white);padding:0.95rem 2.2rem;border-radius:100px;font-family:var(--font-body);font-size:0.9rem;font-weight:600;text-decoration:none;cursor:none;border:none;transition:background 0.2s,transform 0.15s;display:inline-flex;align-items:center;gap:0.5rem;}
+.btn-primary:hover{background:var(--terra-dark);transform:translateY(-2px);}
+.btn-secondary{color:var(--ink);text-decoration:none;font-size:0.88rem;font-weight:500;display:flex;align-items:center;gap:0.5rem;border-bottom:1px solid var(--sand-dark);padding-bottom:2px;transition:color 0.2s,border-color 0.2s;cursor:none;}
+.btn-secondary:hover{color:var(--terra);border-color:var(--terra);}
+.hero-trust{display:flex;align-items:center;gap:1.5rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--sand-dark);}
+.trust-item{font-size:0.78rem;color:var(--muted);}
+.trust-item strong{display:block;font-size:1rem;color:var(--ink);font-family:var(--font-display);font-weight:700;}
+.trust-divider{width:1px;height:32px;background:var(--sand-dark);}
+.hero-right{position:relative;display:flex;align-items:center;justify-content:center;}
+.logo-card{background:var(--warm-white);border:1px solid var(--sand-dark);border-radius:24px;padding:3rem;box-shadow:0 20px 60px rgba(100,60,30,0.12);text-align:center;position:relative;overflow:hidden;width:100%;max-width:360px;}
+.logo-card-arch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:200px;height:100px;border:1px solid var(--sand-mid);border-radius:0 0 100px 100px;border-top:none;}
+.logo-card-logo{font-family:var(--font-display);font-size:3rem;font-weight:900;color:var(--ink);letter-spacing:-0.02em;margin:1.5rem 0 0.5rem;position:relative;z-index:2;}
+.logo-card-logo span{color:var(--terra);}
+.logo-card-tag{font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:2rem;}
+.service-badges{display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin-top:1.5rem;}
+.sbadge{background:var(--sand);color:var(--terra-dark);font-size:0.7rem;font-weight:600;letter-spacing:0.05em;padding:0.35rem 0.9rem;border-radius:100px;border:1px solid var(--sand-dark);}
+
+/* TICKER */
+.ticker{background:var(--terra);padding:0.85rem 0;overflow:hidden;}
+.ticker-track{display:inline-flex;animation:ticker 28s linear infinite;white-space:nowrap;}
+@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.ticker-item{font-family:var(--font-display);font-style:italic;font-size:1rem;color:rgba(255,255,255,0.9);padding:0 2rem;display:inline-flex;align-items:center;gap:2rem;}
+.ticker-item::after{content:'✦';font-style:normal;font-size:0.6rem;opacity:0.6;}
+
+/* SHARED */
+.full-section{padding:6rem 0;width:100%;}
+.full-inner{max-width:1200px;margin:0 auto;padding:0 4rem;}
+.eyebrow{font-size:0.7rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--terra);margin-bottom:0.85rem;display:flex;align-items:center;gap:0.6rem;}
+.eyebrow::before{content:'';display:block;width:20px;height:1.5px;background:var(--terra);}
+.section-h2{font-family:var(--font-display);font-weight:700;font-size:clamp(2.2rem,3.8vw,3.2rem);line-height:1.05;letter-spacing:-0.02em;color:var(--ink);margin-bottom:1rem;}
+.section-h2 i{font-style:italic;color:var(--terra);}
+
+/* PACKAGES */
+.packages-bg{background:var(--sand);}
+.packages-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:4rem;}
+.packages-intro{font-size:0.95rem;line-height:1.8;color:var(--muted);}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+.pkg-card{background:var(--warm-white);border:1px solid var(--sand-dark);border-radius:20px;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s;display:flex;flex-direction:column;}
+.pkg-card:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(100,60,30,0.12);}
+.pkg-card.featured{border-color:var(--terra);box-shadow:0 8px 32px rgba(176,90,58,0.15);position:relative;}
+.pkg-featured-badge{position:absolute;top:0;left:50%;transform:translateX(-50%);background:var(--terra);color:var(--warm-white);font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 1.2rem;border-radius:0 0 10px 10px;}
+.pkg-header{padding:2rem 2rem 1.5rem;border-bottom:1px solid var(--sand-mid);}
+.pkg-icon{width:48px;height:48px;border-radius:12px;background:rgba(176,90,58,0.1);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.25rem;}
+.pkg-name{font-family:var(--font-display);font-weight:700;font-size:1.2rem;color:var(--ink);margin-bottom:0.3rem;}
+.pkg-desc{font-size:0.82rem;color:var(--muted);line-height:1.6;}
+.pkg-price{margin-top:1rem;}
+.pkg-price-val{font-family:var(--font-display);font-size:2rem;font-weight:900;color:var(--terra);}
+.pkg-price-note{font-size:0.75rem;color:var(--muted);margin-top:0.1rem;}
+.pkg-body{padding:1.5rem 2rem 2rem;flex:1;display:flex;flex-direction:column;}
+.pkg-features{list-style:none;display:flex;flex-direction:column;gap:0.65rem;flex:1;}
+.pkg-features li{font-size:0.84rem;color:var(--ink-soft);line-height:1.4;display:flex;align-items:flex-start;gap:0.6rem;}
+.pkg-features li::before{content:'✓';color:var(--terra);font-weight:700;font-size:0.8rem;flex-shrink:0;margin-top:1px;}
+.pkg-cta{margin-top:1.5rem;background:var(--terra);color:var(--warm-white);border:none;padding:0.85rem;border-radius:100px;font-family:var(--font-body);font-size:0.85rem;font-weight:600;cursor:none;width:100%;transition:background 0.2s,transform 0.15s;display:flex;align-items:center;justify-content:center;gap:0.5rem;}
+.pkg-cta:hover{background:var(--terra-dark);transform:translateY(-1px);}
+.pkg-cta.outline{background:transparent;color:var(--terra);border:1.5px solid var(--terra);}
+.pkg-cta.outline:hover{background:var(--terra);color:var(--warm-white);}
+
+/* ADS TIERS */
+.ads-section{background:var(--warm-white);}
+.ads-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2.5rem;}
+.tier-card{border:1px solid var(--sand-dark);border-radius:20px;padding:2rem;background:var(--sand);transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;}
+.tier-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(100,60,30,0.1);border-color:var(--terra);}
+.tier-card.popular{border-color:var(--terra);background:var(--warm-white);position:relative;}
+.tier-popular-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--terra);color:#fff;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 1rem;border-radius:100px;white-space:nowrap;}
+.tier-icon-wrap{width:52px;height:52px;border-radius:50%;background:rgba(176,90,58,0.1);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin:0 auto 1.25rem;}
+.tier-name{font-family:var(--font-display);font-weight:700;font-size:1.1rem;text-align:center;color:var(--ink);margin-bottom:0.5rem;}
+.tier-price{font-family:var(--font-display);font-size:1.6rem;font-weight:900;color:var(--terra);text-align:center;margin-bottom:0.2rem;}
+.tier-price-note{font-size:0.72rem;color:var(--muted);text-align:center;margin-bottom:1.25rem;}
+.tier-divider{height:1px;background:var(--sand-dark);margin-bottom:1.25rem;}
+.tier-features{list-style:none;display:flex;flex-direction:column;gap:0.55rem;margin-bottom:1.5rem;}
+.tier-features li{font-size:0.82rem;color:var(--ink-soft);display:flex;align-items:flex-start;gap:0.5rem;}
+.tier-features li::before{content:'✓';color:var(--terra);font-weight:700;font-size:0.75rem;flex-shrink:0;margin-top:1px;}
+.tier-cta{width:100%;padding:0.8rem;border-radius:100px;font-family:var(--font-body);font-size:0.83rem;font-weight:600;cursor:none;border:1.5px solid var(--terra);background:transparent;color:var(--terra);transition:all 0.2s;}
+.tier-cta:hover,.tier-card.popular .tier-cta{background:var(--terra);color:var(--warm-white);}
+.tier-card.popular .tier-cta:hover{background:var(--terra-dark);}
+
+/* EXPERIENCE */
+.exp-bg{background:var(--sand);}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem;}
+.exp-card{background:var(--warm-white);border:1px solid var(--sand-dark);border-radius:20px;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s;}
+.exp-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(100,60,30,0.1);}
+.exp-card.wide{grid-column:span 2;}
+.exp-vis{height:160px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.exp-body{padding:1.75rem 2rem 2rem;}
+.exp-tag{font-size:0.65rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--terra);margin-bottom:0.4rem;}
+.exp-title{font-family:var(--font-display);font-weight:700;font-size:1.3rem;color:var(--ink);margin-bottom:0.6rem;}
+.exp-desc{font-size:0.84rem;line-height:1.75;color:var(--muted);margin-bottom:1rem;}
+.exp-pills{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.pill{background:var(--sand);color:var(--terra-dark);font-size:0.7rem;font-weight:500;padding:0.28rem 0.8rem;border-radius:100px;border:1px solid var(--sand-dark);}
+
+/* WHY */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem;}
+.why-card{padding:2rem;background:var(--warm-white);border:1px solid var(--sand-dark);border-radius:20px;transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;}
+.why-card:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(100,60,30,0.1);border-color:var(--terra);}
+.why-icon-wrap{width:44px;height:44px;border-radius:12px;background:rgba(176,90,58,0.1);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1rem;}
+.why-title{font-family:var(--font-display);font-weight:700;font-size:1.05rem;color:var(--ink);margin-bottom:0.5rem;}
+.why-desc{font-size:0.83rem;line-height:1.72;color:var(--muted);}
+
+/* PROCESS */
+.process-bg{background:var(--ink);}
+.process-bg .eyebrow{color:var(--terra-light);}
+.process-bg .eyebrow::before{background:var(--terra-light);}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:4rem;border:1px solid rgba(255,255,255,0.08);border-radius:20px;overflow:hidden;}
+.p-step{padding:2.5rem 2rem;border-right:1px solid rgba(255,255,255,0.08);transition:background 0.3s;}
+.p-step:last-child{border-right:none;}
+.p-step:hover{background:rgba(255,255,255,0.03);}
+.p-num{font-family:var(--font-display);font-style:italic;font-size:2.8rem;font-weight:300;color:rgba(176,90,58,0.25);line-height:1;margin-bottom:1.25rem;}
+.p-step h3{font-family:var(--font-display);font-weight:700;font-size:1.2rem;color:var(--warm-white);margin-bottom:0.6rem;}
+.p-step p{font-size:0.82rem;line-height:1.72;color:rgba(255,255,255,0.45);}
+
+/* CTA BANNER */
+.cta-banner{background:var(--terra);padding:5rem 4rem;text-align:center;position:relative;overflow:hidden;}
+.cta-banner-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.05) 1px,transparent 1px);background-size:48px 48px;}
+.cta-banner-inner{position:relative;z-index:2;}
+.cta-banner h2{font-family:var(--font-display);font-weight:900;font-size:clamp(2.5rem,4.5vw,4rem);line-height:1;letter-spacing:-0.02em;color:var(--warm-white);margin-bottom:1rem;}
+.cta-banner h2 i{font-style:italic;opacity:0.85;}
+.cta-banner p{font-size:1rem;color:rgba(255,255,255,0.8);margin-bottom:2.5rem;}
+.btn-white{background:var(--warm-white);color:var(--terra);padding:1rem 2.5rem;border-radius:100px;font-family:var(--font-body);font-size:0.9rem;font-weight:700;border:none;cursor:none;text-decoration:none;display:inline-block;transition:transform 0.2s,background 0.2s;}
+.btn-white:hover{transform:translateY(-2px);background:#fff;}
+
+/* FOOTER */
+footer{background:var(--ink-soft);padding:4rem 4rem 2rem;color:var(--warm-white);}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+.f-brand{font-family:var(--font-display);font-size:1.6rem;font-weight:900;margin-bottom:0.75rem;}
+.f-brand span{color:var(--terra-light);}
+.f-desc{font-size:0.82rem;line-height:1.75;color:rgba(255,255,255,0.4);max-width:240px;}
+.f-contact{margin-top:1rem;}
+.f-contact a{display:block;font-size:0.8rem;color:rgba(255,255,255,0.5);text-decoration:none;margin-bottom:0.3rem;transition:color 0.2s;}
+.f-contact a:hover{color:var(--terra-light);}
+.f-col h4{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:1.25rem;}
+.f-col ul{list-style:none;}
+.f-col li{margin-bottom:0.5rem;}
+.f-col a{color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.82rem;transition:color 0.2s;}
+.f-col a:hover{color:var(--terra-light);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.08);font-size:0.75rem;color:rgba(255,255,255,0.24);}
+.f-socials{display:flex;gap:1.25rem;}
+.f-socials a{color:rgba(255,255,255,0.35);text-decoration:none;font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+.f-socials a:hover{color:var(--terra-light);}
+
+/* MODAL */
+
+
+.modal{background:var(--warm-white);border-radius:24px;width:100%;max-width:700px;max-height:92vh;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.25);transform:translateY(24px) scale(0.97);transition:transform 0.35s cubic-bezier(0.23,1,0.32,1);display:flex;flex-direction:column;}
+
+.modal-header{padding:1.5rem 2rem;border-bottom:1px solid var(--sand-mid);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-shrink:0;}
+.modal-title-wrap{}
+.modal-title{font-family:var(--font-display);font-weight:700;font-size:1.4rem;color:var(--ink);}
+.modal-sub{font-size:0.8rem;color:var(--muted);margin-top:0.2rem;}
+.modal-close{background:none;border:none;cursor:none;color:var(--muted);font-size:1.3rem;line-height:1;padding:0.25rem;transition:color 0.2s;flex-shrink:0;}
+.modal-close:hover{color:var(--ink);}
+.modal-body{flex:1;overflow:hidden;display:flex;flex-direction:column;}
+
+/* Calendly embed */
+.calendly-notice{
+  background:rgba(176,90,58,0.07);
+  border-bottom:1px solid rgba(176,90,58,0.15);
+  padding:0.75rem 2rem;
+  display:flex;align-items:center;gap:0.6rem;
+  font-size:0.8rem;color:var(--terra-dark);
+  flex-shrink:0;
+}
+.calendly-notice strong{font-weight:600;}
+.calendly-inline-widget{
+  flex:1;
+  min-height:500px;
+}
+
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.fade-up.in{opacity:1;transform:none;}
+.fade-up.d1{transition-delay:0.1s;}.fade-up.d2{transition-delay:0.2s;}.fade-up.d3{transition-delay:0.3s;}
+
+@media(max-width:960px){
+  nav{padding:1.25rem 1.5rem;}.nav-links{display:none;}
+  .full-inner,footer{padding-left:1.5rem;padding-right:1.5rem;}
+  .hero-inner{grid-template-columns:1fr;padding:8rem 1.5rem 4rem;}.hero-right{display:none;}
+  .packages-header{grid-template-columns:1fr;}
+  .pkg-grid,.ads-tiers{grid-template-columns:1fr;}
+  .exp-grid{grid-template-columns:1fr;}.exp-card.wide{grid-column:span 1;}
+  .process-steps{grid-template-columns:1fr 1fr;}
+  .why-grid{grid-template-columns:1fr 1fr;}
+  .footer-top{grid-template-columns:1fr 1fr;}
+  .cta-banner{padding:4rem 1.5rem;}
+  .modal{max-width:100%;border-radius:16px;}
+  .calendly-inline-widget{min-height:420px;}
+}
+</style>
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">click<span>.co</span></a>
+  <ul class="nav-links">
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#ads">Ad Pricing</a></li>
+    <li><a href="#experience">Work</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#" class="btn-book" onclick="openModal();return false;">Book a Call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <svg class="hero-desert-bg" viewBox="0 0 1440 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,200 Q180,120 360,180 Q540,240 720,160 Q900,80 1080,160 Q1260,240 1440,180 L1440,320 L0,320 Z" fill="rgba(176,90,58,0.08)"/>
+    <path d="M0,240 Q200,180 400,220 Q600,260 800,200 Q1000,140 1200,210 Q1350,260 1440,230 L1440,320 L0,320 Z" fill="rgba(176,90,58,0.12)"/>
+    <path d="M0,280 Q300,250 600,270 Q900,290 1200,260 Q1350,248 1440,265 L1440,320 L0,320 Z" fill="rgba(176,90,58,0.18)"/>
+    <g transform="translate(80,100)"><rect x="18" y="60" width="8" height="120" fill="rgba(107,124,92,0.35)" rx="4"/><rect x="2" y="90" width="30" height="6" fill="rgba(107,124,92,0.35)" rx="3"/><rect x="2" y="82" width="16" height="14" fill="rgba(107,124,92,0.35)" rx="3"/></g>
+    <g transform="translate(1300,60)"><rect x="18" y="30" width="10" height="160" fill="rgba(107,124,92,0.25)" rx="5"/><rect x="0" y="70" width="36" height="8" fill="rgba(107,124,92,0.25)" rx="4"/><rect x="0" y="58" width="18" height="22" fill="rgba(107,124,92,0.25)" rx="4"/><rect x="28" y="100" width="18" height="8" fill="rgba(107,124,92,0.25)" rx="4"/><rect x="36" y="90" width="10" height="24" fill="rgba(107,124,92,0.25)" rx="4"/></g>
+    <circle cx="1200" cy="180" r="50" fill="rgba(212,132,90,0.15)"/><circle cx="1200" cy="180" r="30" fill="rgba(212,132,90,0.15)"/>
+  </svg>
+  <div class="hero-inner">
+    <div class="fade-up">
+      <div class="hero-eyebrow">✦ Social-First Marketing Agency</div>
+      <h1 class="hero-h1">Social media<br><span class="italic-terra">that clicks.</span></h1>
+      <p class="hero-sub">We help brands grow through paid media, content strategy, and creator partnerships — built by people who live and breathe the internet.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="openModal()">Book a Free Call ✦</button>
+        <a href="#packages" class="btn-secondary">See our packages →</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><strong>2+ yrs</strong>Running paid ad agencies</div>
+        <div class="trust-divider"></div>
+        <div class="trust-item"><strong>Full-stack</strong>Ads, SEO, social & more</div>
+        <div class="trust-divider"></div>
+        <div class="trust-item"><strong>100%</strong>Founder-led, always</div>
+      </div>
+    </div>
+    <div class="hero-right fade-up d2">
+      <div class="logo-card">
+        <div class="logo-card-arch"></div>
+        <div class="logo-card-logo">click<span>.co</span></div>
+        <div class="logo-card-tag">Social Media Marketing Agency</div>
+        <svg viewBox="0 0 280 100" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" style="margin-top:1rem;">
+          <path d="M0,70 Q70,40 140,60 Q210,80 280,55 L280,100 L0,100Z" fill="#e8d5c0"/>
+          <path d="M0,80 Q100,65 200,75 Q240,80 280,72 L280,100 L0,100Z" fill="#d4b896"/>
+          <circle cx="220" cy="50" r="22" fill="#e8a87a" opacity="0.5"/>
+          <rect x="38" y="28" width="7" height="55" fill="#7a8c6a" rx="3"/>
+          <rect x="25" y="48" width="26" height="6" fill="#7a8c6a" rx="3"/>
+          <rect x="25" y="40" width="14" height="14" fill="#7a8c6a" rx="3"/>
+          <rect x="215" y="20" width="9" height="70" fill="#7a8c6a" rx="4" opacity="0.7"/>
+          <rect x="200" y="42" width="30" height="7" fill="#7a8c6a" rx="3" opacity="0.7"/>
+        </svg>
+        <div class="service-badges">
+          <span class="sbadge">Paid Ads</span><span class="sbadge">TikTok</span><span class="sbadge">Creator Mgmt</span><span class="sbadge">SEO</span><span class="sbadge">Brand Strategy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">Facebook & Meta Ads</span><span class="ticker-item">TikTok Strategy</span><span class="ticker-item">Creator Partnerships</span><span class="ticker-item">Content Calendars</span><span class="ticker-item">SEO Management</span><span class="ticker-item">Lead Generation</span><span class="ticker-item">UGC Campaigns</span><span class="ticker-item">Ad Graphic Creation</span><span class="ticker-item">Account Management</span><span class="ticker-item">Influencer Outreach</span>
+    <span class="ticker-item">Facebook & Meta Ads</span><span class="ticker-item">TikTok Strategy</span><span class="ticker-item">Creator Partnerships</span><span class="ticker-item">Content Calendars</span><span class="ticker-item">SEO Management</span><span class="ticker-item">Lead Generation</span><span class="ticker-item">UGC Campaigns</span><span class="ticker-item">Ad Graphic Creation</span><span class="ticker-item">Account Management</span><span class="ticker-item">Influencer Outreach</span>
+  </div>
+</div>
+
+<!-- PACKAGES -->
+<div class="full-section packages-bg" id="packages">
+  <div class="full-inner">
+    <div class="packages-header fade-up">
+      <div>
+        <div class="eyebrow">Our Packages</div>
+        <h2 class="section-h2">Simple. Strategic.<br><i>Results-driven.</i></h2>
+      </div>
+      <p class="packages-intro">Whether you're just getting started or ready to scale, we have a package built for where you are right now. Every package is tailored to your brand — no cookie-cutter solutions, no long-term contracts required to start.</p>
+    </div>
+    <div class="pkg-grid fade-up">
+      <div class="pkg-card">
+        <div class="pkg-header">
+          <div class="pkg-icon">📅</div>
+          <div class="pkg-name">Content Calendar + Coaching</div>
+          <div class="pkg-desc">Perfect for brands who need a clear content strategy and posting roadmap.</div>
+          <div class="pkg-price"><div class="pkg-price-val">$150</div><div class="pkg-price-note">One-time</div></div>
+        </div>
+        <div class="pkg-body">
+          <ul class="pkg-features">
+            <li>One 45–60 minute coaching session</li>
+            <li>Custom content calendar for your brand</li>
+            <li>Monthly posting schedule</li>
+            <li>Platform-specific recommendations</li>
+            <li>Hook & caption strategy guidance</li>
+          </ul>
+          <button class="pkg-cta outline" onclick="openModal()">Book This Package →</button>
+        </div>
+      </div>
+      <div class="pkg-card featured">
+        <div class="pkg-featured-badge">Most Popular</div>
+        <div class="pkg-header">
+          <div class="pkg-icon">📣</div>
+          <div class="pkg-name">Social Media Management</div>
+          <div class="pkg-desc">Full-service management so you can focus on running your business.</div>
+          <div class="pkg-price"><div class="pkg-price-val">Custom</div><div class="pkg-price-note">Tailored per brand — book a call</div></div>
+        </div>
+        <div class="pkg-body">
+          <ul class="pkg-features">
+            <li>Content calendar & scheduling</li>
+            <li>Short-form video strategy (TikTok & Reels)</li>
+            <li>Caption writing & hook creation</li>
+            <li>Community engagement</li>
+            <li>Monthly analytics & reporting</li>
+            <li>Trend research & content ideation</li>
+          </ul>
+          <button class="pkg-cta" onclick="openModal()">Get a Custom Quote →</button>
+        </div>
+      </div>
+      <div class="pkg-card">
+        <div class="pkg-header">
+          <div class="pkg-icon">🎨</div>
+          <div class="pkg-name">Ad Graphic Creation</div>
+          <div class="pkg-desc">Scroll-stopping visuals designed to perform in paid social campaigns.</div>
+          <div class="pkg-price"><div class="pkg-price-val">$150–$500</div><div class="pkg-price-note">Per project</div></div>
+        </div>
+        <div class="pkg-body">
+          <ul class="pkg-features">
+            <li>3–5 custom ad graphics per package</li>
+            <li>Designed for Facebook & Instagram</li>
+            <li>Multiple size variants included</li>
+            <li>On-brand creative direction</li>
+            <li>Optimized for paid social performance</li>
+          </ul>
+          <button class="pkg-cta outline" onclick="openModal()">Book This Package →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADS PRICING -->
+<div class="full-section ads-section" id="ads">
+  <div class="full-inner">
+    <div class="fade-up">
+      <div class="eyebrow">Facebook & Instagram Ads</div>
+      <h2 class="section-h2">Paid advertising that<br><i>drives real results.</i></h2>
+      <p style="font-size:0.95rem;line-height:1.8;color:var(--muted);max-width:520px;margin-top:0.5rem;">We've been running Facebook and Instagram campaigns for over two years — from local businesses to larger brands. Choose the tier that fits your goals right now.</p>
+    </div>
+    <div class="ads-tiers fade-up">
+      <div class="tier-card">
+        <div class="tier-icon-wrap">🌱</div>
+        <div class="tier-name">Beginner / Portfolio Building</div>
+        <div class="tier-price">$150–$300</div>
+        <div class="tier-price-note">Setup fee · Great for simpler local campaigns</div>
+        <div class="tier-divider"></div>
+        <ul class="tier-features">
+          <li>One campaign setup</li>
+          <li>1–2 ad sets</li>
+          <li>Basic audience targeting</li>
+          <li>Ad copy included</li>
+          <li>Client provides creatives</li>
+          <li>Great for newer ad accounts</li>
+        </ul>
+        <button class="tier-cta" onclick="openModal()">Get Started →</button>
+      </div>
+      <div class="tier-card popular">
+        <div class="tier-popular-badge">Most Requested</div>
+        <div class="tier-icon-wrap">📊</div>
+        <div class="tier-name">Intermediate / Professional</div>
+        <div class="tier-price">$500–$1,500</div>
+        <div class="tier-price-note">Setup fee · Full campaign management</div>
+        <div class="tier-divider"></div>
+        <ul class="tier-features">
+          <li>Full audience research</li>
+          <li>Campaign structure & strategy</li>
+          <li>Pixel setup & conversion tracking</li>
+          <li>Ad copy & creative direction</li>
+          <li>Retargeting setup</li>
+          <li>A/B testing recommendations</li>
+        </ul>
+        <button class="tier-cta" onclick="openModal()">Book a Discovery Call →</button>
+      </div>
+      <div class="tier-card">
+        <div class="tier-icon-wrap">💎</div>
+        <div class="tier-name">High-End / Agency Level</div>
+        <div class="tier-price">$2,000+</div>
+        <div class="tier-price-note">Setup fee · Full-scale campaigns</div>
+        <div class="tier-divider"></div>
+        <ul class="tier-features">
+          <li>Full funnel strategy</li>
+          <li>Multiple campaigns & ad sets</li>
+          <li>Creative direction included</li>
+          <li>Advanced tracking & attribution</li>
+          <li>Landing page recommendations</li>
+          <li>Ongoing optimization & reporting</li>
+        </ul>
+        <button class="tier-cta" onclick="openModal()">Let's Talk →</button>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3rem;" class="fade-up">
+      <p style="font-size:0.9rem;color:var(--muted);margin-bottom:1.25rem;font-style:italic;">Not sure which tier is right for you? Book a free 30-min call and we'll figure it out together.</p>
+      <button class="btn-primary" onclick="openModal()">Book Your Free Discovery Call ✦</button>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="full-section exp-bg" id="experience">
+  <div class="full-inner">
+    <div class="fade-up">
+      <div class="eyebrow">Our Experience</div>
+      <h2 class="section-h2">We've done this<br><i>for real.</i></h2>
+    </div>
+    <div class="exp-grid fade-up">
+      <div class="exp-card wide">
+        <div class="exp-vis" style="background:linear-gradient(145deg,#e8d5c0,#d4b896);">
+          <svg width="380" height="120" viewBox="0 0 380 120" fill="none">
+            <polyline points="20,95 70,62 120,74 180,28 240,45 300,16 360,24" stroke="#b05a3a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="20,95 70,62 120,74 180,28 240,45 300,16 360,24 360,110 20,110" fill="rgba(176,90,58,0.1)" stroke="none"/>
+            <circle cx="360" cy="24" r="5" fill="#b05a3a"/>
+            <text x="190" y="114" text-anchor="middle" fill="rgba(176,90,58,0.5)" font-size="10" font-family="Inter" letter-spacing="3" font-weight="600">FACEBOOK ADS · ACCOUNT MANAGEMENT · SEO · SOCIAL MEDIA</text>
+          </svg>
+        </div>
+        <div class="exp-body">
+          <div class="exp-tag">2+ Years — Paid Advertising & Full-Stack Marketing</div>
+          <div class="exp-title">Agency & In-House Marketing Experience</div>
+          <div class="exp-desc">Our team brings hands-on experience running Facebook and Instagram ad campaigns for real businesses — acquiring clients through inbound funnels, building campaigns from scratch, and delivering consistent lead generation. Beyond paid ads, we've managed full client accounts, led social media strategy, and managed SEO teams — giving us a rare full-stack perspective that most agencies simply don't have.</div>
+          <div class="exp-pills">
+            <span class="pill">Facebook & Meta Ads</span>
+            <span class="pill">Lead Generation</span>
+            <span class="pill">Account Management</span>
+            <span class="pill">Social Media Strategy</span>
+            <span class="pill">SEO Team Management</span>
+            <span class="pill">Campaign Optimization</span>
+            <span class="pill">Client Communication</span>
+            <span class="pill">Funnel Creation</span>
+          </div>
+        </div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-vis" style="background:linear-gradient(145deg,#d8e4d8,#c0d4c0);">
+          <svg width="200" height="110" viewBox="0 0 200 110" fill="none">
+            <circle cx="100" cy="52" r="36" stroke="#4a6a4a" stroke-width="1" stroke-dasharray="4 3"/>
+            <text x="100" y="46" text-anchor="middle" fill="#3a5a3a" font-family="Georgia,serif" font-weight="700" font-size="13" letter-spacing="2">INFLUENCER</text>
+            <text x="100" y="64" text-anchor="middle" fill="#3a5a3a" font-family="Georgia,serif" font-weight="700" font-size="13" letter-spacing="2">MARKETING</text>
+          </svg>
+        </div>
+        <div class="exp-body">
+          <div class="exp-tag">Creator & Community Marketing</div>
+          <div class="exp-title">Influencer & UGC Campaigns</div>
+          <div class="exp-desc">Managed end-to-end influencer outreach, creator recruitment, and UGC campaigns for wellness and lifestyle brands. Built organized outreach pipelines and partnership systems that generated authentic social proof and community-driven growth.</div>
+          <div class="exp-pills">
+            <span class="pill">Creator Outreach</span>
+            <span class="pill">UGC Campaigns</span>
+            <span class="pill">TikTok & Instagram</span>
+            <span class="pill">Community Marketing</span>
+          </div>
+        </div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-vis" style="background:linear-gradient(145deg,#e8d0c8,#d4b0a8);">
+          <svg width="200" height="110" viewBox="0 0 200 110" fill="none">
+            <rect x="30" y="24" width="140" height="62" rx="10" stroke="#8a3e22" stroke-width="1" fill="rgba(176,90,58,0.06)"/>
+            <text x="100" y="52" text-anchor="middle" fill="#8a3e22" font-family="Georgia,serif" font-weight="700" font-size="13" letter-spacing="2">BRAND</text>
+            <text x="100" y="70" text-anchor="middle" fill="#8a3e22" font-family="Georgia,serif" font-weight="700" font-size="13" letter-spacing="2">STRATEGY</text>
+          </svg>
+        </div>
+        <div class="exp-body">
+          <div class="exp-tag">Brand Strategy & Positioning</div>
+          <div class="exp-title">Wellness & Lifestyle Brand Growth</div>
+          <div class="exp-desc">Developed brand positioning, content strategy, and community marketing for wellness and lifestyle brands — building authentic audiences through short-form content, local influencer strategy, and platform-native storytelling.</div>
+          <div class="exp-pills">
+            <span class="pill">Brand Positioning</span>
+            <span class="pill">Content Strategy</span>
+            <span class="pill">Local Influencers</span>
+            <span class="pill">Wellness & Lifestyle</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<div class="full-section process-bg">
+  <div class="full-inner">
+    <div class="fade-up" style="max-width:500px;">
+      <div class="eyebrow">How We Work</div>
+      <h2 class="section-h2" style="color:var(--warm-white);">Simple process.<br><i>Clear results.</i></h2>
+    </div>
+    <div class="process-steps fade-up">
+      <div class="p-step"><div class="p-num">01</div><h3>Discover</h3><p>We learn your brand, your goals, and what's not working — before touching a single campaign or piece of content.</p></div>
+      <div class="p-step"><div class="p-num">02</div><h3>Strategise</h3><p>A focused, custom plan with clear deliverables, timelines, and measurable goals. No guesswork, no vague promises.</p></div>
+      <div class="p-step"><div class="p-num">03</div><h3>Execute</h3><p>Fast and precise. Campaigns, content, and creative launched with full transparency and regular check-ins.</p></div>
+      <div class="p-step"><div class="p-num">04</div><h3>Optimise</h3><p>We track, iterate, and double down on what's working. Your results compound — not just in month one.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY US -->
+<div class="full-section" id="why" style="background:var(--sand);">
+  <div class="full-inner">
+    <div class="fade-up">
+      <div class="eyebrow">Why Click.co</div>
+      <h2 class="section-h2">What sets us<br><i>apart.</i></h2>
+    </div>
+    <div class="why-grid fade-up">
+      <div class="why-card"><div class="why-icon-wrap">📱</div><div class="why-title">We live on the platforms</div><div class="why-desc">TikTok, Instagram, Meta — we're not outsiders guessing what works. We understand the algorithms and what makes audiences stop scrolling because we're inside these platforms every single day.</div></div>
+      <div class="why-card"><div class="why-icon-wrap">🎯</div><div class="why-title">Full-stack marketing expertise</div><div class="why-desc">Paid ads, SEO, social media management, account management, and creator marketing — we bring the full picture. Most agencies specialize in one. We understand how they all work together.</div></div>
+      <div class="why-card"><div class="why-icon-wrap">🤝</div><div class="why-title">Founder-led, always</div><div class="why-desc">When you hire Click.co, you work directly with the founders. No junior handoffs. The people who care most about your results are the ones doing the work.</div></div>
+      <div class="why-card"><div class="why-icon-wrap">🌵</div><div class="why-title">Built for lifestyle brands</div><div class="why-desc">Our roots are in wellness, fitness, and lifestyle marketing — spaces where authenticity drives real growth. We know how to build brands that people genuinely connect with.</div></div>
+      <div class="why-card"><div class="why-icon-wrap">⚡</div><div class="why-title">Entrepreneurial by nature</div><div class="why-desc">We've built businesses from scratch — acquired clients, retained them, managed campaigns independently. We treat every client's brand with the same accountability we apply to our own.</div></div>
+      <div class="why-card"><div class="why-icon-wrap">🧠</div><div class="why-title">Gen Z consumer fluency</div><div class="why-desc">We understand trends, hooks, and what drives purchase decisions for Gen Z and millennial audiences — not from research, but from being inside internet culture every day.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="cta-banner-grid"></div>
+  <div class="cta-banner-inner fade-up">
+    <h2>Ready to make things <i>click?</i></h2>
+    <p>Book a free 30-minute discovery call. No pitch, no pressure — just a real conversation about your brand.</p>
+    <button class="btn-white" onclick="openModal()">Book Your Free Call ✦</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="f-brand">click<span>.co</span></div>
+      <p class="f-desc">A social-first marketing agency built by people who live and breathe the internet. Paid media, creator marketing, SEO, and content strategy — done right.</p>
+      <div class="f-contact">
+        <a href="mailto:clickwithus26@gmail.com">clickwithus26@gmail.com</a>
+        <a href="https://instagram.com/clickco.agency">@clickco.agency</a>
+      </div>
+    </div>
+    <div class="f-col"><h4>Services</h4><ul>
+      <li><a href="#">Facebook & Meta Ads</a></li>
+      <li><a href="#">TikTok Strategy</a></li>
+      <li><a href="#">Creator Partnerships</a></li>
+      <li><a href="#">Content Calendars</a></li>
+      <li><a href="#">SEO Management</a></li>
+      <li><a href="#">Ad Graphic Creation</a></li>
+    </ul></div>
+    <div class="f-col"><h4>Company</h4><ul>
+      <li><a href="#">About</a></li>
+      <li><a href="#experience">Our Experience</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#" onclick="openModal();return false;">Book a Call</a></li>
+    </ul></div>
+    <div class="f-col"><h4>Packages</h4><ul>
+      <li><a href="#packages">Content Calendar + Coaching</a></li>
+      <li><a href="#ads">FB Ads — Beginner</a></li>
+      <li><a href="#ads">FB Ads — Intermediate</a></li>
+      <li><a href="#ads">FB Ads — Agency Level</a></li>
+      <li><a href="#packages">Ad Graphic Creation</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Click.co. All rights reserved.</span>
+    <div class="f-socials"><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">LinkedIn</a></div>
+  </div>
+</footer>
+
+
+<script>
+/* Cursor */
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring')||document.querySelector('.cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=(mx-5)+'px';cur.style.top=(my-5)+'px';});
+(function a(){rx+=(mx-rx)*0.1;ry+=(my-ry)*0.1;
+  if(ring){ring.style.left=(rx-17)+'px';ring.style.top=(ry-17)+'px';}
+  requestAnimationFrame(a);})();
+
+/* Nav scroll */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+
+/* Scroll reveal */
+const obs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
+},{threshold:0.08});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
+/* Calendly popup — load script on demand, open when ready */
+var calendlyLoaded = false;
+function openModal(){
+  var CALY_URL = 'https://calendly.com/clickwithus26/30min?hide_gdpr_banner=1&primary_color=b05a3a';
+  if(window.Calendly && calendlyLoaded){
+    Calendly.initPopupWidget({url: CALY_URL});
+    return;
+  }
+  // Load script once
+  if(!document.getElementById('calendly-script')){
+    var s = document.createElement('script');
+    s.id = 'calendly-script';
+    s.src = 'https://assets.calendly.com/assets/external/widget.js';
+    s.onload = function(){
+      calendlyLoaded = true;
+      Calendly.initPopupWidget({url: CALY_URL});
+    };
+    document.head.appendChild(s);
+  }
+}
+</script>
+</body>
+</html>
