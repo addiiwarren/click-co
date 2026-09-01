@@ -1,0 +1,7 @@
+# Client contracts — keep private. This repo is public (GitHub Pages),
+# so anything committed here is visible to anyone on the internet.
+*.docx
+*.pdf
+
+# Local tooling
+.DS_Store
