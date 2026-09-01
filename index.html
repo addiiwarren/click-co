@@ -663,6 +663,20 @@ function openModal(){
   };
   document.head.appendChild(s);
 }
+
+/* Meta Pixel — fire the "Contact" event when a call is actually booked.
+   Calendly's popup posts a message up to this page at each step; the
+   'calendly.event_scheduled' one means the booking went through. Firing here
+   (rather than on page load) means the pixel counts real leads, not visitors.
+   The guard stops a repeat message from inflating the conversion count. */
+var contactTracked = false;
+window.addEventListener('message', function(e){
+  if(e.origin !== 'https://calendly.com') return;
+  if(!e.data || e.data.event !== 'calendly.event_scheduled') return;
+  if(contactTracked) return;
+  contactTracked = true;
+  if(typeof fbq === 'function') fbq('track', 'Contact');
+});
 </script>
 </body>
 </html>
