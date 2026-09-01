@@ -664,6 +664,12 @@ function openModal(){
   document.head.appendChild(s);
 }
 
+/* Deep link — clickco.../#book opens the calendar on arrival.
+   Lets you share one link (email, DM, Instagram bio) that lands people on
+   this page first, so the pixel fires, instead of sending them straight to
+   Calendly where we have no tracking. */
+if(location.hash === '#book') window.addEventListener('load', openModal);
+
 /* Meta Pixel — fire the "Contact" event when a call is actually booked.
    Calendly's popup posts a message up to this page at each step; the
    'calendly.event_scheduled' one means the booking went through. Firing here
